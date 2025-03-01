@@ -194,13 +194,13 @@ export default function ProfilePage() {
 
   // Sample user profile data
   const profile = {
-    name: "Alex Johnson",
-    username: "alexj",
+    name: "James Frewin",
+    username: "jamesfrewin",
     avatar: "https://github.com/shadcn.png",
-    bio: "Software Developer | Next.js enthusiast | Building cool stuff",
-    followers: 1243,
-    following: 567,
-    joined: "January 2023",
+    bio: "AI Educator | Building with AI | Founder of buildwithaicourse.com | Teaching how to build apps with AI",
+    followers: 5243,
+    following: 867,
+    joined: "January 2022",
     verified: true
   };
 
@@ -208,26 +208,25 @@ export default function ProfilePage() {
   const userThreads = [
     {
       id: 1,
-      content: "Just launched my new website! Check it out and let me know what you think. #webdev #launch",
+      content: "Just launched my new AI course! Learn how to build apps using AI at buildwithaicourse.com #AI #coding #buildwithai",
       timestamp: "2h ago",
-      likes: 24,
-      replies: 5,
-      reposts: 3,
-      shares: 1,
+      likes: 124,
+      replies: 15,
+      reposts: 43,
+      shares: 21,
       images: [
-        "https://images.unsplash.com/photo-1555952517-2e8e729e0b44?w=800&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1555952494-efd681c7e3f9?w=800&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1677442135968-6b7d726b3f84?w=800&auto=format&fit=crop&q=60"
       ],
-      location: "San Francisco, CA"
+      location: "London, UK"
     },
     {
       id: 2,
-      content: "Working on a new project using #NextJS and #shadcn. The developer experience is amazing!",
+      content: "Using Cursor has completely transformed my coding workflow! The AI suggestions are incredibly accurate and save me hours every day. #CursorAI #productivity",
       timestamp: "1d ago",
-      likes: 42,
-      replies: 8,
-      reposts: 12,
-      shares: 5,
+      likes: 87,
+      replies: 12,
+      reposts: 24,
+      shares: 8,
       images: [
         "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&auto=format&fit=crop&q=60"
       ],
@@ -235,14 +234,17 @@ export default function ProfilePage() {
     },
     {
       id: 3,
-      content: "Just finished reading 'Atomic Habits'. Highly recommend it to anyone looking to build better habits. #reading #productivity",
+      content: "Join me for my next live building session where we'll create a full-stack app using AI in just one hour! Sign up at lu.ma/uwzria8i #livebuilding #AIcoding #buildwithai",
       timestamp: "3d ago",
-      likes: 18,
-      replies: 3,
-      reposts: 7,
-      shares: 2,
-      images: [],
-      location: ""
+      likes: 156,
+      replies: 34,
+      reposts: 42,
+      shares: 27,
+      images: [
+        "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=60"
+      ],
+      location: "London, UK"
     },
   ];
 
@@ -250,21 +252,21 @@ export default function ProfilePage() {
   const userReplies = [
     {
       id: 1,
-      replyTo: "janedoe",
-      content: "That's awesome! I've been thinking about trying that framework too.",
+      replyTo: "sarahcodes",
+      content: "Absolutely! Cursor's AI features have completely changed how I approach coding projects. The time savings are incredible.",
       timestamp: "5h ago",
-      likes: 8,
-      reposts: 0,
-      shares: 0,
+      likes: 28,
+      reposts: 5,
+      shares: 2,
     },
     {
       id: 2,
-      replyTo: "marksmith",
-      content: "Great point! I completely agree with your perspective.",
+      replyTo: "skirano",
+      content: "Your Threads UI build was amazing! I was inspired to do my own version in a live coding session. Check it out at lu.ma/uwzria8i",
       timestamp: "2d ago",
-      likes: 12,
-      reposts: 1,
-      shares: 0,
+      likes: 42,
+      reposts: 11,
+      shares: 6,
     },
   ];
 

@@ -61,6 +61,10 @@ export default function HomePage() {
   const MAX_CHARS = 280;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   
+  // State for image modal
+  const [imageModalOpen, setImageModalOpen] = useState(false);
+  const [selectedModalImage, setSelectedModalImage] = useState("");
+  
   // State for confetti animation
   const [showConfetti, setShowConfetti] = useState(false);
   const confettiContainerRef = useRef<HTMLDivElement>(null);
@@ -196,59 +200,194 @@ export default function HomePage() {
     {
       id: 1,
       author: {
-        name: "John Doe",
-        username: "johndoe",
-        avatar: "https://github.com/shadcn.png",
+        name: "James Frewin",
+        username: "jamesfrewin",
+        avatar: "",
         verified: true
       },
-      content: "Just launched my new website! Check it out and let me know what you think. #webdev #launch",
+      content: "Just launched my new AI course! Learn how to build apps using AI at buildwithaicourse.com #AI #coding #buildwithai",
       timestamp: "2h ago",
-      likes: 24,
-      replies: 5,
-      reposts: 3,
-      shares: 1,
+      likes: 124,
+      replies: 15,
+      reposts: 43,
+      shares: 21,
       images: [
-        "https://images.unsplash.com/photo-1555952517-2e8e729e0b44?w=800&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1555952494-efd681c7e3f9?w=800&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1677442135968-6b7d726b3f84?w=800&auto=format&fit=crop&q=60"
       ],
-      location: "San Francisco, CA"
+      location: "London, UK"
     },
     {
       id: 2,
       author: {
-        name: "Jane Smith",
-        username: "janesmith",
-        avatar: "https://github.com/shadcn.png",
-        verified: false
+        name: "Sarah Chen",
+        username: "sarahcodes",
+        avatar: "",
+        verified: true
       },
-      content: "Working on a new project using #NextJS and #shadcn. The developer experience is amazing!",
-      timestamp: "4h ago",
-      likes: 42,
-      replies: 8,
-      reposts: 12,
-      shares: 5,
+      content: "Using Cursor has completely transformed my coding workflow! The AI suggestions are incredibly accurate and save me hours every day. #CursorAI #productivity",
+      timestamp: "3h ago",
+      likes: 87,
+      replies: 12,
+      reposts: 24,
+      shares: 8,
       images: [
         "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&auto=format&fit=crop&q=60"
       ],
-      location: "New York, NY"
+      location: "San Francisco, CA"
     },
     {
       id: 3,
       author: {
         name: "Alex Johnson",
         username: "alexj",
-        avatar: "https://github.com/shadcn.png",
+        avatar: "",
+        verified: false
+      },
+      content: "Just hiked to the top of Mount Rainier! The views were absolutely breathtaking. Nature never ceases to amaze me. #hiking #mountains #adventure",
+      timestamp: "5h ago",
+      likes: 56,
+      replies: 7,
+      reposts: 13,
+      shares: 4,
+      images: [
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800&auto=format&fit=crop&q=60"
+      ],
+      location: "Mount Rainier, WA"
+    },
+    {
+      id: 4,
+      author: {
+        name: "Pietro Schirano",
+        username: "skirano",
+        avatar: "",
         verified: true
       },
-      content: "Just finished reading 'Atomic Habits'. Highly recommend it to anyone looking to build better habits. #reading #productivity",
+      content: "Made the most incredible pasta from scratch today! Homemade tagliatelle with wild mushroom sauce. Cooking is my meditation. #foodie #homecooking #pasta",
       timestamp: "6h ago",
-      likes: 18,
-      replies: 3,
-      reposts: 7,
-      shares: 2,
-      images: [],
-      location: ""
+      likes: 203,
+      replies: 28,
+      reposts: 47,
+      shares: 19,
+      images: [
+        "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&auto=format&fit=crop&q=60"
+      ],
+      location: "Milan, Italy"
     },
+    {
+      id: 5,
+      author: {
+        name: "Maya Patel",
+        username: "mayacodes",
+        avatar: "",
+        verified: false
+      },
+      content: "Today's live coding session on building with AI was incredible! Thanks jamesfrewin for the amazing tips. Can't wait to apply these techniques to my projects. #livecoding #AIbuilding",
+      timestamp: "8h ago",
+      likes: 42,
+      replies: 5,
+      reposts: 8,
+      shares: 3,
+      images: [],
+      location: "Remote"
+    },
+    {
+      id: 6,
+      author: {
+        name: "David Kim",
+        username: "davidkim",
+        avatar: "",
+        verified: true
+      },
+      content: "Just finished reading 'The Midnight Library' by Matt Haig. Such a profound exploration of regret, possibility, and the choices that make us who we are. Highly recommend! #books #reading",
+      timestamp: "10h ago",
+      likes: 67,
+      replies: 9,
+      reposts: 14,
+      shares: 6,
+      images: [
+        "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&auto=format&fit=crop&q=60"
+      ],
+      location: "Toronto, Canada"
+    },
+    {
+      id: 7,
+      author: {
+        name: "Emma Wilson",
+        username: "emmadev",
+        avatar: "",
+        verified: false
+      },
+      content: "Cursor's AI features helped me debug a complex issue in minutes that would have taken hours otherwise. If you're not using AI-powered coding tools yet, you're missing out! #CursorIDE #AIcoding",
+      timestamp: "12h ago",
+      likes: 93,
+      replies: 17,
+      reposts: 21,
+      shares: 8,
+      images: [
+        "https://images.unsplash.com/photo-1605379399642-870262d3d051?w=800&auto=format&fit=crop&q=60"
+      ],
+      location: "Berlin, Germany"
+    },
+    {
+      id: 8,
+      author: {
+        name: "Carlos Rodriguez",
+        username: "carlosr",
+        avatar: "",
+        verified: true
+      },
+      content: "Caught the most amazing sunset at the beach today. The sky was painted with shades of orange, pink, and purple. Moments like these remind me to slow down and appreciate life's beauty. #sunset #beach #mindfulness",
+      timestamp: "1d ago",
+      likes: 78,
+      replies: 11,
+      reposts: 19,
+      shares: 7,
+      images: [
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?w=800&auto=format&fit=crop&q=60"
+      ],
+      location: "Barcelona, Spain"
+    },
+    {
+      id: 9,
+      author: {
+        name: "Olivia Chen",
+        username: "oliviac",
+        avatar: "",
+        verified: false
+      },
+      content: "Just adopted this adorable rescue puppy! Meet Luna, the newest member of our family. She's already stolen our hearts. #adoptdontshop #puppylove #rescuedog",
+      timestamp: "1d ago",
+      likes: 112,
+      replies: 23,
+      reposts: 31,
+      shares: 14,
+      images: [
+        "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&auto=format&fit=crop&q=60"
+      ],
+      location: "Sydney, Australia"
+    },
+    {
+      id: 10,
+      author: {
+        name: "James Frewin",
+        username: "jamesfrewin",
+        avatar: "",
+        verified: true
+      },
+      content: "Join me for my next live building session where we'll create a full-stack app using AI in just one hour! Sign up at lu.ma/uwzria8i #livebuilding #AIcoding #buildwithai",
+      timestamp: "1d ago",
+      likes: 156,
+      replies: 34,
+      reposts: 42,
+      shares: 27,
+      images: [
+        "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=60"
+      ],
+      location: "London, UK"
+    }
   ];
 
   // Function to highlight hashtags in blue
@@ -272,6 +411,12 @@ export default function HomePage() {
     { name: "Profile", path: "/profile" },
     { name: "Notifications", path: "/notifications" }
   ];
+
+  // Function to open image in modal
+  const openImageModal = (imageUrl: string) => {
+    setSelectedModalImage(imageUrl);
+    setImageModalOpen(true);
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -310,16 +455,13 @@ export default function HomePage() {
           
           <div className="flex gap-4 mt-4">
             <Avatar className="h-10 w-10">
-              <AvatarImage src="https://github.com/shadcn.png" alt="Your profile" />
-              <AvatarFallback>YP</AvatarFallback>
+              <AvatarImage src="" alt="Your profile" />
+              <AvatarFallback>JF</AvatarFallback>
             </Avatar>
             
             <div className="flex-1 space-y-4">
               <div className="flex items-center gap-2">
-                <span className="font-semibold">Your Name</span>
-                <span className="verified-badge">
-                  <CheckCircle size={16} fill="#1DA1F2" stroke="none" />
-                </span>
+                <span className="font-semibold">jamesfrewin</span>
                 
                 <Select value={audience} onValueChange={setAudience}>
                   <SelectTrigger className="w-[140px] h-8 ml-auto">
@@ -476,6 +618,25 @@ export default function HomePage() {
         </DialogContent>
       </Dialog>
       
+      {/* Image Modal */}
+      <Dialog open={imageModalOpen} onOpenChange={setImageModalOpen}>
+        <DialogContent className="sm:max-w-[90vw] h-[90vh] p-0 flex items-center justify-center bg-black/90">
+          <div className="relative w-full h-full flex items-center justify-center">
+            <img 
+              src={selectedModalImage} 
+              alt="Enlarged post image" 
+              className="max-w-full max-h-full object-contain"
+            />
+            <button 
+              className="absolute top-4 right-4 bg-black/50 text-white rounded-full p-2 hover:bg-black/70"
+              onClick={() => setImageModalOpen(false)}
+            >
+              <X size={24} />
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
+      
       {/* Page Switcher */}
       <div className="page-switcher">
         <DropdownMenu>
@@ -514,8 +675,8 @@ export default function HomePage() {
             {/* What's new input */}
             <div className="whats-new">
               <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" alt="Your profile" />
-                <AvatarFallback>YP</AvatarFallback>
+                <AvatarImage src="" alt="Your profile" />
+                <AvatarFallback>JF</AvatarFallback>
               </Avatar>
               <Input 
                 type="text" 
@@ -530,23 +691,23 @@ export default function HomePage() {
                 <div key={thread.id} className="post-divider py-4 last:border-0">
                   <div className="flex gap-4">
                     <Avatar>
-                      <AvatarImage src={thread.author.avatar} alt={thread.author.name} />
-                      <AvatarFallback>{thread.author.name.charAt(0)}</AvatarFallback>
+                      <AvatarImage src={thread.author.avatar} alt={thread.author.username} />
+                      <AvatarFallback>
+                        {thread.id % 10 === 1 ? "JF" : 
+                         thread.id % 10 === 2 ? "SC" : 
+                         thread.id % 10 === 3 ? "AJ" : 
+                         thread.id % 10 === 4 ? "PS" : 
+                         thread.id % 10 === 5 ? "MP" : 
+                         thread.id % 10 === 6 ? "DK" : 
+                         thread.id % 10 === 7 ? "EW" : 
+                         thread.id % 10 === 8 ? "CR" : 
+                         thread.id % 10 === 9 ? "OC" : "JF"}
+                      </AvatarFallback>
                     </Avatar>
                     <div className="flex-1 space-y-1.5">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                          <div>
-                            <div className="flex items-center">
-                              <p className="font-bold">{thread.author.name}</p>
-                              {thread.author.verified && (
-                                <span className="verified-badge">
-                                  <CheckCircle size={16} fill="#1DA1F2" stroke="none" />
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-sm text-muted-foreground">@{thread.author.username}</p>
-                          </div>
+                          <p className="font-bold text-sm">{thread.author.username}</p>
                           <p className="text-sm text-muted-foreground ml-2.5">{thread.timestamp}</p>
                         </div>
                         <DropdownMenu>
@@ -567,9 +728,13 @@ export default function HomePage() {
                       
                       {thread.images && thread.images.length > 0 && (
                         <>
-                          <div className={`post-images grid-${thread.images.length > 1 ? '2' : '1'}`}>
+                          <div className="post-images-container">
                             {thread.images.map((image, index) => (
-                              <div key={index} className="post-image">
+                              <div 
+                                key={index} 
+                                className="post-image cursor-pointer"
+                                onClick={() => openImageModal(image)}
+                              >
                                 <img src={image} alt={`Post image ${index + 1}`} />
                               </div>
                             ))}
