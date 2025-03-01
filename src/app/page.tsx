@@ -212,7 +212,7 @@ export default function HomePage() {
       reposts: 43,
       shares: 21,
       images: [
-        "https://images.unsplash.com/photo-1677442135968-6b7d726b3f84?w=800&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1591453089816-0fbb971b454c?w=800&auto=format&fit=crop&q=60"
       ],
       location: "London, UK"
     },
@@ -406,7 +406,7 @@ export default function HomePage() {
 
   // Available pages for the page switcher
   const pages = [
-    { name: "Home", path: "/" },
+    { name: "For You", path: "/" },
     { name: "Explore", path: "/explore" },
     { name: "Profile", path: "/profile" },
     { name: "Notifications", path: "/notifications" }
@@ -423,7 +423,7 @@ export default function HomePage() {
       {/* Confetti container */}
       {showConfetti && <div ref={confettiContainerRef} className="confetti-container"></div>}
       
-      <div className="absolute top-4 right-4 z-10">
+      <div className="theme-toggle-position">
         <ThemeToggle />
       </div>
       
@@ -453,16 +453,9 @@ export default function HomePage() {
             <DialogTitle className="text-xl font-bold">Create new post</DialogTitle>
           </DialogHeader>
           
-          <div className="flex gap-4 mt-4">
-            <Avatar className="h-10 w-10">
-              <AvatarImage src="" alt="Your profile" />
-              <AvatarFallback>JF</AvatarFallback>
-            </Avatar>
-            
+          <div className="flex flex-col mt-4">
             <div className="flex-1 space-y-4">
               <div className="flex items-center gap-2">
-                <span className="font-semibold">jamesfrewin</span>
-                
                 <Select value={audience} onValueChange={setAudience}>
                   <SelectTrigger className="w-[140px] h-8 ml-auto">
                     <SelectValue placeholder="Who can see this?" />
@@ -493,7 +486,7 @@ export default function HomePage() {
               <div className="relative">
                 <textarea
                   ref={textareaRef}
-                  className="w-full min-h-[120px] bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none resize-none text-lg"
+                  className="w-full min-h-[120px] bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none resize-none text-lg align-top pt-2"
                   placeholder="What's happening?"
                   value={postContent}
                   onChange={(e) => setPostContent(e.target.value)}
@@ -550,7 +543,7 @@ export default function HomePage() {
             </div>
           </div>
           
-          <div className="border-t border-gray-200 dark:border-gray-800 pt-4 mt-4">
+          <div className="dialog-divider pt-4 mt-4">
             <div className="flex justify-between items-center">
               <div className="flex gap-2">
                 <button 
@@ -642,7 +635,7 @@ export default function HomePage() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="page-switcher-button">
-              Home
+              For You
               <ChevronDown size={18} />
             </button>
           </DropdownMenuTrigger>
@@ -651,10 +644,10 @@ export default function HomePage() {
               <DropdownMenuItem key={page.path} asChild>
                 <Link 
                   href={page.path} 
-                  className={page.name === "Home" ? "page-menu-item-active" : "page-menu-item"}
+                  className={page.name === "For You" ? "page-menu-item-active" : "page-menu-item"}
                 >
                   {page.name}
-                  {page.name === "Home" && <Check className="ml-auto" size={18} />}
+                  {page.name === "For You" && <Check className="ml-auto" size={18} />}
                 </Link>
               </DropdownMenuItem>
             ))}
@@ -706,9 +699,9 @@ export default function HomePage() {
                     </Avatar>
                     <div className="flex-1 space-y-1.5">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center">
+                        <div className="post-username-timestamp">
                           <p className="font-bold text-sm">{thread.author.username}</p>
-                          <p className="text-sm text-muted-foreground ml-2.5">{thread.timestamp}</p>
+                          <p className="text-sm text-muted-foreground">{thread.timestamp}</p>
                         </div>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
