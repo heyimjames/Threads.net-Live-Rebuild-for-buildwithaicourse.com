@@ -2,6 +2,8 @@
 
 A responsive Threads clone built with Next.js and shadcn/ui.
 
+![Threads.net Clone Preview](./public/images/threads-preview.png)
+
 ## Quick Start Guide for Non-Technical Users
 
 ### How to Download and Run This Project
