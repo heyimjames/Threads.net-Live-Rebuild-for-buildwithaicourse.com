@@ -168,6 +168,13 @@
 .central-feed {
   @apply w-full md:w-[50%] mx-auto bg-card rounded-t-[1.25rem] rounded-b-none min-h-screen mt-6 border border-gray-200 dark:border-gray-800;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 0 12px;
+}
+
+@media (min-width: 768px) {
+  .central-feed {
+    padding: 0;
+  }
 }
 
 .central-feed-content {
