@@ -50,7 +50,7 @@ Book a call with me: [https://cal.com/october/30min](https://cal.com/october/30m
 - 👤 User profiles
 - 🔔 Notifications system
 - 🔍 Explore page
-- 🎉 Interactive animations (confetti, hover effects)
+- 🎉 Interactive hover effects
 
 ## Tech Stack
 
@@ -132,7 +132,6 @@ The app uses CSS variables for theming. You can customize the colors in `src/app
 
 The app includes several interactive animations:
 
-- **Confetti Animation**: Colorful confetti burst when creating a new post
 - **Image Hover Effects**: Subtle spring scaling effect when hovering over images
 
 ### Components
