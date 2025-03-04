@@ -13,6 +13,16 @@ export function ThemeSwitcher() {
   // Ensure component is mounted to avoid hydration mismatch
   useEffect(() => {
     setMounted(true);
+    
+    // Check for crazy theme on initial load
+    if (typeof window !== 'undefined') {
+      const hasCrazyTheme = localStorage.getItem('crazyTheme') === 'true';
+      if (hasCrazyTheme) {
+        document.documentElement.classList.add('crazy');
+      } else {
+        document.documentElement.classList.remove('crazy');
+      }
+    }
   }, []);
   
   if (!mounted) return null;
@@ -22,8 +32,13 @@ export function ThemeSwitcher() {
     const root = document.documentElement;
     if (root.classList.contains('crazy')) {
       root.classList.remove('crazy');
+      localStorage.removeItem('crazyTheme');
       setTheme('light');
     } else {
+      // Remove dark class if it exists to prevent conflicts
+      if (root.classList.contains('dark')) {
+        root.classList.remove('dark');
+      }
       root.classList.add('crazy');
       // Store that we're using crazy theme
       localStorage.setItem('crazyTheme', 'true');
@@ -32,6 +47,15 @@ export function ThemeSwitcher() {
 
   // Check if we're using the crazy theme
   const isCrazyTheme = typeof window !== 'undefined' && document.documentElement.classList.contains('crazy');
+
+  const handleThemeChange = (newTheme: string) => {
+    // Remove crazy theme if it's active
+    if (document.documentElement.classList.contains('crazy')) {
+      document.documentElement.classList.remove('crazy');
+      localStorage.removeItem('crazyTheme');
+    }
+    setTheme(newTheme);
+  };
 
   return (
     <DropdownMenu>
@@ -44,11 +68,11 @@ export function ThemeSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("light")}>
           <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
           <Moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>

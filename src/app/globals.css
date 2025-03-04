@@ -61,7 +61,7 @@
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
   --ring: oklch(0.439 0 0);
@@ -188,8 +188,9 @@
 
 /* Post divider line */
 .post-divider {
-  @apply border-b border-gray-200 dark:border-gray-800;
-  width: 100%;
+  @apply border-b;
+  border-color: var(--border);
+  width: calc(100% + 2rem);
   margin-left: -1rem;
   margin-right: -1rem;
   padding-left: 1rem;
@@ -198,6 +199,7 @@
 
 @media (min-width: 768px) {
   .post-divider {
+    width: calc(100% + 3rem);
     margin-left: -1.5rem;
     margin-right: -1.5rem;
     padding-left: 1.5rem;
@@ -207,10 +209,18 @@
 
 /* Dialog dividers */
 .dialog-divider {
-  @apply border-t border-gray-200 dark:border-gray-800;
+  @apply border-t;
+  border-color: var(--border);
   width: calc(100% + 3rem);
   margin-left: -1.5rem;
   margin-right: -1.5rem;
+  padding-top: 1rem;
+}
+
+/* Add padding to the buttons section */
+.dialog-divider .flex.justify-between {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 /* Post images */
@@ -279,21 +289,37 @@
   @apply flex-1 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none;
 }
 
+/* Post button */
 .post-button {
-  @apply bg-white text-primary border border-gray-200 hover:bg-gray-50 rounded-md px-4 py-1.5 font-medium text-sm transition-colors dark:bg-gray-800 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700;
+  @apply bg-white text-primary border border-gray-200 hover:bg-gray-50 rounded-md px-4 py-1.5 font-medium text-sm transition-colors;
+  background-color: var(--card);
+  color: var(--primary);
+  border-color: var(--border);
+}
+.post-button:hover {
+  background-color: var(--secondary);
 }
 
 /* Adjust page switcher for mobile with top navigation */
 .page-switcher {
-  @apply flex items-center justify-center gap-2 mb-0 mt-2;
+  @apply flex items-center justify-center gap-4 mb-0 mt-2;
 }
 
+/* Page switcher button */
 .page-switcher-button {
-  @apply flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 dark:border-gray-700 text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors bg-white dark:bg-gray-800;
+  @apply flex items-center gap-2 px-4 py-2 rounded-full border text-base font-medium hover:bg-gray-50 transition-colors;
+  background-color: var(--card);
+  border-color: var(--border);
+}
+.page-switcher-button:hover {
+  background-color: var(--secondary);
 }
 
+/* Page menu */
 .page-menu {
-  @apply w-56 max-h-60 overflow-auto rounded-xl bg-white dark:bg-gray-800 p-2 shadow-md border border-gray-200 dark:border-gray-700;
+  @apply w-56 max-h-60 overflow-auto rounded-xl p-2 shadow-md border;
+  background-color: var(--card);
+  border-color: var(--border);
 }
 
 .page-menu-item {
@@ -314,7 +340,9 @@
 
 /* Side navigation */
 .side-navigation {
-  @apply fixed left-0 top-0 w-full bg-white dark:bg-gray-800 flex flex-row justify-start gap-4 px-4 py-3 z-10 border-b border-gray-200 dark:border-gray-700;
+  @apply fixed left-0 top-0 w-full bg-white flex flex-row justify-start gap-4 px-4 py-3 z-10 border-b border-gray-200;
+  background-color: var(--background);
+  border-color: var(--border);
 }
 
 @media (min-width: 768px) {
@@ -333,16 +361,12 @@
 
 /* New post button */
 .new-post-button {
-  @apply fixed bottom-6 right-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl h-14 w-14 flex items-center justify-center shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors;
-  transition: transform 0.2s ease-in-out;
+  @apply fixed bottom-6 right-6 border rounded-xl h-14 w-14 flex items-center justify-center shadow-sm transition-colors;
+  background-color: var(--card);
+  border-color: var(--border);
 }
-
 .new-post-button:hover {
-  transform: scale(1.1);
-}
-
-.new-post-button:active {
-  transform: scale(0.95);
+  background-color: var(--secondary);
 }
 
 /* New post modal styles */
@@ -351,14 +375,16 @@
 }
 
 .post-modal {
-  @apply bg-white dark:bg-gray-900 rounded-xl max-w-lg w-full mx-4 shadow-xl overflow-hidden;
+  @apply rounded-xl max-w-lg w-full mx-4 shadow-xl overflow-hidden;
+  background-color: var(--card);
   max-height: 90vh;
   display: flex;
   flex-direction: column;
 }
 
 .post-modal-header {
-  @apply flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800;
+  @apply flex items-center justify-between p-4 border-b;
+  border-color: var(--border);
 }
 
 .post-modal-body {
@@ -368,8 +394,10 @@
 }
 
 .post-modal-footer {
-  @apply p-4 border-t border-gray-200 dark:border-gray-800 flex justify-between items-center;
+  @apply border-t flex justify-between items-center;
   background-color: var(--card);
+  border-color: var(--border);
+  padding: 0.75rem 1.5rem;
 }
 
 .image-upload-area {
@@ -456,13 +484,20 @@
   width: calc(100% + 3rem);
 }
 
+.location-input-container.no-border {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 .location-input {
   @apply flex-1 bg-transparent border-none focus:outline-none;
 }
 
 /* Audience selector dropdown */
 .audience-dropdown {
-  @apply absolute right-0 top-full mt-1 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 w-48 z-10;
+  @apply absolute right-0 top-full mt-1 rounded-lg shadow-lg border w-48 z-10;
+  background-color: var(--card);
+  border-color: var(--border);
 }
 
 .audience-option {
@@ -496,70 +531,6 @@
   }
   100% {
     transform: scale(0.98);
-  }
-}
-
-/* Confetti animation - enhanced */
-.confetti-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  overflow: hidden;
-}
-
-.confetti {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #1DA1F2;
-  opacity: 1;
-  animation: confetti-fall 4s linear forwards, confetti-side 3s ease-in-out infinite alternate;
-}
-
-.confetti.square {
-  border-radius: 0;
-}
-
-.confetti.circle {
-  border-radius: 50%;
-}
-
-.confetti.triangle {
-  width: 0;
-  height: 0;
-  background-color: transparent;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 10px solid;
-}
-
-@keyframes confetti-fall {
-  0% {
-    transform: translateY(-10%) rotate(0deg);
-    opacity: 1;
-  }
-  80% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-
-@keyframes confetti-side {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(30px);
-  }
-  100% {
-    transform: translateX(-30px);
   }
 }
 

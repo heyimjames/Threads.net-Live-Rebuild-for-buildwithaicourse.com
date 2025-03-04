@@ -65,74 +65,14 @@ export default function HomePage() {
   const [imageModalOpen, setImageModalOpen] = useState(false);
   const [selectedModalImage, setSelectedModalImage] = useState("");
   
-  // State for confetti animation
-  const [showConfetti, setShowConfetti] = useState(false);
-  const confettiContainerRef = useRef<HTMLDivElement>(null);
-  
   // Update character count when post content changes
   useEffect(() => {
     setCharCount(postContent.length);
   }, [postContent]);
   
-  // Function to create confetti elements
-  const createConfetti = () => {
-    const confettiContainer = confettiContainerRef.current;
-    if (!confettiContainer) return;
-    
-    // Clear any existing confetti
-    confettiContainer.innerHTML = '';
-    
-    // Colors for confetti
-    const colors = ['#1DA1F2', '#FF1493', '#FFD700', '#9932CC', '#32CD32'];
-    const shapes = ['square', 'circle', 'triangle'];
-    
-    // Create 150 confetti elements (increased from 100)
-    for (let i = 0; i < 150; i++) {
-      const confetti = document.createElement('div');
-      confetti.className = `confetti ${shapes[Math.floor(Math.random() * shapes.length)]}`;
-      
-      // Random position
-      confetti.style.left = `${Math.random() * 100}%`;
-      confetti.style.top = `${Math.random() * 20 - 20}%`; // Start above the viewport
-      
-      // Random size
-      const size = Math.random() * 10 + 5; // Slightly larger confetti (5-15px)
-      confetti.style.width = `${size}px`;
-      confetti.style.height = `${size}px`;
-      
-      // Random color
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      confetti.style.backgroundColor = color;
-      if (confetti.classList.contains('triangle')) {
-        confetti.style.borderBottomColor = color;
-      }
-      
-      // Random rotation
-      confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-      
-      // Random animation duration
-      const fallDuration = Math.random() * 3 + 3; // 3-6 seconds
-      const sideDuration = Math.random() * 2 + 2; // 2-4 seconds
-      confetti.style.animationDuration = `${fallDuration}s, ${sideDuration}s`;
-      
-      // Random delay
-      const delay = Math.random() * 0.5;
-      confetti.style.animationDelay = `${delay}s, ${delay}s`;
-      
-      confettiContainer.appendChild(confetti);
-    }
-  };
-  
-  // Function to handle opening the new post modal with confetti
+  // Function to handle opening the new post modal
   const handleOpenNewPost = () => {
     setNewPostOpen(true);
-    setShowConfetti(true);
-    createConfetti();
-    
-    // Hide confetti after 6 seconds (increased from 5)
-    setTimeout(() => {
-      setShowConfetti(false);
-    }, 6000);
   };
   
   // Function to handle post submission
@@ -420,9 +360,6 @@ export default function HomePage() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Confetti container */}
-      {showConfetti && <div ref={confettiContainerRef} className="confetti-container"></div>}
-      
       <div className="theme-toggle-position">
         <ThemeToggle />
       </div>
@@ -530,7 +467,7 @@ export default function HomePage() {
                 </div>
               )}
               
-              <div className="location-input-container">
+              <div className="location-input-container no-border">
                 <MapPin size={18} className="text-muted-foreground mr-2" />
                 <input
                   type="text"

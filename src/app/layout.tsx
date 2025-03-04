@@ -35,6 +35,7 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
+          themes={['light', 'dark']}
         >
           <div className="fixed top-4 right-4 z-50">
             <ThemeSwitcher />
